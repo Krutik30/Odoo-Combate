@@ -5,8 +5,35 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_register_background"
+    android:background="@color/white"
     tools:context=".commonactivities.Register">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="odoo combate\n2024"
+        android:textSize="30sp"
+        android:textColor="#B878DF"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/background_register_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,7 +99,8 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_weight="1"
                 style="@style/Widget.AppCompat.DropDownItem.Spinner"
-                android:popupBackground="#004067"/>
+                android:popupBackground="#004067"
+                android:dropDownWidth="250dp"/>
 
         </LinearLayout>
 

@@ -3,12 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".advertiseractivities.fragments.AdvertiserAllAdsFragment">
+    tools:context=".advertiseractivities.fragments.AdvertiserAllAdsFragment"
+    android:background="@drawable/background_page">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/advertiser_ads_rv_lay"/>
+        tools:listitem="@layout/advertiser_ads_rv_lay"
+        android:layout_marginTop="30dp"
+        android:padding="5dp"/>
 
 </FrameLayout>
