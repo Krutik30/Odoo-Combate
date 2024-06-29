@@ -2,6 +2,7 @@
   "name": "ooh-server",
   "version": "1.0.0",
   "author": "AGHERA KRUTIK <agherakrutik99@gmail.com",
+  "type": "module",
   "scripts": {
     "start": "node index.ts",
     "dev": "nodemon index.ts",
