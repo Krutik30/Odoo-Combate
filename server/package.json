@@ -4,9 +4,10 @@
   "author": "AGHERA KRUTIK <agherakrutik99@gmail.com",
   "type": "module",
   "scripts": {
-    "start": "node index.ts",
+    "start": "npx ts-node index.ts",
     "dev": "nodemon index.ts",
-    "db:bana": "npx prisma migrate dev --name db && npx prisma generate && rm -rf prisma/migrations"
+    "db:bana": "npx prisma migrate dev --name db && npx prisma generate && rm -rf prisma/migrations",
+    "build": "npx tsc --esModuleInterop index.ts"
   },
   "dependencies": {
     "@prisma/client": "5.16.1",
