@@ -31,7 +31,7 @@ class AdvertiserMainActivity : AppCompatActivity() {
                     loadFragment(AdvertiserHomeFragment())
                     true
                 }
-                R.id.availableSpace -> {
+                R.id.searchSpace -> {
                     loadFragment(AdvertiserSpaceListingFragment())
                     true
                 }

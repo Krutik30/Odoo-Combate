@@ -5,6 +5,7 @@ data class BookedSpaceDetailsModel(
     val spaceName: String?,
     val price: String?,
     val dimensions: String,
+    val adImg: String?,
     val status: String?,
     val adId: String?,
     val adName: String?,

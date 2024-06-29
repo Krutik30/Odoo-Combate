@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".advertiseractivities.fragments.AdvertiserAddAdsFragment">
+    tools:context=".advertiseractivities.AdvertiserPerticularSpaceActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                             android:textColor="@color/white"
                             android:textColorHint="@color/black"
                             android:textSize="25sp"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -79,38 +79,6 @@
                             app:layout_constraintVertical_bias="0.5" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginVertical="10dp"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:id="@+id/camera"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_marginHorizontal="20dp"
-                            android:layout_marginVertical="5dp"
-                            android:padding="10dp"
-                            android:background="@color/white"
-                            android:src="@drawable/camera"
-                            android:contentDescription="camera" />
-                        <ImageView
-                            android:id="@+id/album"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_marginHorizontal="20dp"
-                            android:layout_marginVertical="5dp"
-                            android:padding="10dp"
-                            android:background="@color/white"
-                            android:src="@drawable/album"
-                            android:contentDescription="album" />
-
-                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -131,12 +99,12 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="30dp"
                     android:gravity="center"
-                    android:text="Ad Name :"
+                    android:text="Space Name :"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
-                <EditText
-                    android:id="@+id/adName"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/spaceName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -148,6 +116,7 @@
                     android:gravity="end"
                     android:textColor="@color/white"
                     android:textSize="20sp"
+                    android:inputType="textMultiLine"
                     android:textCursorDrawable="@drawable/cursor_drawable"/>
 
             </RelativeLayout>
@@ -167,12 +136,12 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="30dp"
                     android:gravity="center"
-                    android:text="Budget :"
+                    android:text="Price :"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
-                <EditText
-                    android:id="@+id/budget"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/price"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -181,7 +150,118 @@
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@id/text2"
                     android:backgroundTint="@color/white"
-                    android:inputType="number"
+                    android:gravity="end"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:inputType="textMultiLine"
+                    android:textCursorDrawable="@drawable/cursor_drawable"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/r3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="30dp"
+                    android:gravity="center"
+                    android:text="Status :"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/text3"
+                    android:backgroundTint="@color/white"
+                    android:inputType="textMultiLine"
+                    android:gravity="end"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textCursorDrawable="@drawable/cursor_drawable"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/r4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="30dp"
+                    android:gravity="center"
+                    android:text="Location :"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/location"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/text4"
+                    android:backgroundTint="@color/white"
+                    android:inputType="textMultiLine"
+                    android:gravity="end"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textCursorDrawable="@drawable/cursor_drawable"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/r5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="30dp"
+                    android:gravity="center"
+                    android:text="Dimensions :"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/budget"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/text5"
+                    android:backgroundTint="@color/white"
+                    android:inputType="textMultiLine"
                     android:gravity="end"
                     android:textColor="@color/white"
                     android:textSize="20sp"
@@ -198,13 +278,13 @@
                 android:layout_marginTop="30dp">
 
                 <TextView
-                    android:id="@+id/add"
+                    android:id="@+id/bookSpace"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="Add"
-                    android:visibility="visible"
+                    android:text="Book Space"
+                    android:visibility="gone"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
