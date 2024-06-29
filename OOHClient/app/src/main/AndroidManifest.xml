@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OOHClient"
         tools:targetApi="31">
+        <activity
+            android:name=".commonactivities.PerformanceMatrixActivity"
+            android:exported="false" />
         <activity
             android:name=".advertiseractivities.AdvertiserAdDetailsActivity"
             android:exported="false" />
@@ -34,16 +39,10 @@
             android:name=".advertiseractivities.AdvertiserMainActivity"
             android:exported="false" />
         <activity
-            android:name=".commonactivities.UserInfoActivity"
-            android:exported="false" />
-        <activity
             android:name=".commonactivities.Login"
             android:exported="false" />
         <activity
             android:name=".commonactivities.Register"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -19,12 +19,13 @@ model user {
   name      String?
   password  String
   role      String   @default("Admin")
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  adminDetails      adminDetails?      @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "adminDetails")
-  advertiserDetails advertiserDetails? @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "advertiserDetails")
-  spaceOwnerDetails spaceOwnerDetails? @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "spaceOwnerDetails")
+  adminDetails      adminDetails?
+  advertiserDetails advertiserDetails?
+  spaceOwnerDetails spaceOwnerDetails?
 
   @@map("user")
 }
@@ -35,7 +36,7 @@ model adminDetails {
   contactNumber Int
   profilePic    String
 
-  user user[]
+  user user?  @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("admin_detail")
 }
@@ -50,7 +51,7 @@ model advertiserDetails {
   profilePic     String
   ownerDetailId  String
 
-  user      user[]
+  user      user?     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   advertise advertise[]
 
   @@map("advertiser_detail")
@@ -63,7 +64,7 @@ model spaceOwnerDetails {
   companyAddress String
   profilePic     String
 
-  user   user[]
+  user   user?          @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   spaces space[]
 
   @@map("spaceowner_detail")

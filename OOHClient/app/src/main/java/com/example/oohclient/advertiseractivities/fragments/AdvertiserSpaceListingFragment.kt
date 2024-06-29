@@ -5,56 +5,45 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.oohclient.R
+import com.example.oohclient.databinding.FragmentAdvertiserHomeBinding
+import com.example.oohclient.databinding.FragmentAdvertiserSpaceListingBinding
+import com.example.oohclient.model.BookedSpaceDetailsModel
+import com.example.oohclient.model.SpaceDetailsModel
+import com.example.oohclient.rvadapter.AdvertiserBookedSpaceRVAdapter
+import com.example.oohclient.rvadapter.AdvertiserSpaceListingRVAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AdvertiserSpaceListingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AdvertiserSpaceListingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentAdvertiserSpaceListingBinding
+    private lateinit var spaceDetailsModel: SpaceDetailsModel
+    private var list = arrayListOf<SpaceDetailsModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_advertiser_space_listing, container, false)
-    }
+        binding = FragmentAdvertiserSpaceListingBinding.inflate(layoutInflater, container, false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AdvertiserSpaceListingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AdvertiserSpaceListingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        spaceDetailsModel = SpaceDetailsModel(
+            spaceName = "space 1",
+            spaceId = "space id",
+            price = "1000",
+            dimensions = "15 x 15",
+            status = "Booked",
+            location = "Location"
+        )
+        for (i in 1..10){
+            list.add(spaceDetailsModel)
+        }
+
+        val spaceListingRVAdapter = AdvertiserSpaceListingRVAdapter(context, list)
+        binding.rv.adapter = spaceListingRVAdapter
+        binding.rv.layoutManager = LinearLayoutManager(context)
+
+
+        return binding.root
     }
 }

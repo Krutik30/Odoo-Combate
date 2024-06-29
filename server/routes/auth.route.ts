@@ -1,7 +1,5 @@
 import { Router } from 'express';
-import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import prisma from '../utils/prismaClient';
 
 const router = Router();
@@ -14,12 +12,12 @@ router.post('/signup', async (req, res) => {
         // Check if the username already exists
         const existingUser = await prisma.user.findFirst({
             where: {
-                email: ""
+                email
             },
         });
 
         if (existingUser) {
-            return res.status(400).json({ error: 'Username already exists' });
+            return res.status(400).json({ status: 400, message: 'Username already exists', payload: null });
         }
 
         // Hash the password
@@ -36,10 +34,10 @@ router.post('/signup', async (req, res) => {
         });
 
 
-        res.status(201).json({ message: 'User created successfully', user: newUser });
+        res.status(201).json({ message: 'User created successfully', status: 201, payload: newUser });
     } catch (error) {
         console.error('Error creating user:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ status: 500, message: 'Internal server error', payload: null });
     }
 });
 
@@ -61,7 +59,8 @@ router.post('/login', async (req, res) => {
             const isOk = await bcrypt.compare(password, user.password);
             if (isOk) {
                 res.status(200).json({
-                    status: "success",
+                    message: "Login successful",
+                    status: 200,
                     payload: user
                 })
             }
@@ -72,6 +71,8 @@ router.post('/login', async (req, res) => {
 
     }catch (error) {
         console.error('Error logging in:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ status: 500, message: 'Internal server error', payload: null });
     }
 })
+
+export default router;
