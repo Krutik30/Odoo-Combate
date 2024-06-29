@@ -1,7 +1,5 @@
 import { Router } from 'express';
-import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import prisma from '../utils/prismaClient';
 
 const router = Router();
@@ -75,3 +73,5 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 })
+
+export default router;
