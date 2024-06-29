@@ -4,15 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_page"
     tools:context=".advertiseractivities.AdvertiserPerticularSpaceActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:background="@drawable/background_page"
-        tools:context=".addproducts.AddProductActivity"
-        tools:ignore="hardCodedText">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/mainScreen"
@@ -61,7 +58,7 @@
                             app:layout_constraintVertical_bias="0.5" />
 
                         <ImageView
-                            android:id="@+id/productImg"
+                            android:id="@+id/spaceImg"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:contentDescription="Product Image"
@@ -88,7 +85,7 @@
                 android:id="@+id/r1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -125,7 +122,7 @@
                 android:id="@+id/r2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -162,7 +159,7 @@
                 android:id="@+id/r3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -199,7 +196,7 @@
                 android:id="@+id/r4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -236,7 +233,7 @@
                 android:id="@+id/r5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -252,7 +249,7 @@
                     android:textSize="20sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/budget"
+                    android:id="@+id/dimensions"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
