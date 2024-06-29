@@ -53,7 +53,7 @@ model advertiserDetails {
   user      user[]
   advertise advertise[]
 
-  @@map("advertise_detail")
+  @@map("advertiser_detail")
 }
 
 model spaceOwnerDetails {
