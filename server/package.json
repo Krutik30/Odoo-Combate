@@ -14,6 +14,7 @@
   "scripts": {
     "start": "npx ts-node index.ts",
     "dev": "nodemon index.ts",
+    "seed": "npx ts-node prisma/seed/addSpaces.ts",
     "db:bana": "npx prisma migrate dev --name db && npx prisma generate && rm -rf prisma/migrations",
     "build": "npx tsc --esModuleInterop index.ts"
   },
