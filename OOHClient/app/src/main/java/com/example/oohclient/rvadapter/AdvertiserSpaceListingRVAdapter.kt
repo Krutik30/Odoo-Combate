@@ -3,6 +3,7 @@ package com.example.oohclient.rvadapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +15,7 @@ import com.example.oohclient.model.BookedSpaceDetailsModel
 import com.example.oohclient.model.SpaceDetailsModel
 import com.google.android.material.imageview.ShapeableImageView
 
-class AdvertiserSpaceListingRVAdapter(private val context: Context?, private val spaceList : ArrayList<SpaceDetailsModel>) : RecyclerView.Adapter<AdvertiserSpaceListingRVAdapter.ViewHolder>() {
+class AdvertiserSpaceListingRVAdapter(private val context: Context?, private val spaceList : ArrayList<SpaceDetailsModel>, private val listener: IrvAdapter) : RecyclerView.Adapter<AdvertiserSpaceListingRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ViewHolder(
@@ -24,6 +25,10 @@ class AdvertiserSpaceListingRVAdapter(private val context: Context?, private val
                 false
             )
         )
+
+        binding.openSpace.setOnClickListener {
+            listener.onLayoutClicked(spaceList[binding.adapterPosition])
+        }
 
         return binding
     }
@@ -40,8 +45,14 @@ class AdvertiserSpaceListingRVAdapter(private val context: Context?, private val
 
     class ViewHolder(advertiserSpaceListingRvLayBinding: AdvertiserSpaceListingRvLayBinding) :
         RecyclerView.ViewHolder(advertiserSpaceListingRvLayBinding.root) {
+            val openSpace: ImageButton = advertiserSpaceListingRvLayBinding.openSpace
         val spaceName: TextView = advertiserSpaceListingRvLayBinding.spaceName
         val status: TextView = advertiserSpaceListingRvLayBinding.status
         val spaceImg: ShapeableImageView = advertiserSpaceListingRvLayBinding.spaceImg
     }
+
+    interface IrvAdapter{
+        fun onLayoutClicked(spaceDetails: SpaceDetailsModel)
+    }
+
 }

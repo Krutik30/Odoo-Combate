@@ -1,16 +1,18 @@
 package com.example.oohclient.advertiseractivities.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.oohclient.advertiseractivities.AdvertiserPerticularSpaceActivity
 import com.example.oohclient.databinding.FragmentAdvertiserSpaceListingBinding
 import com.example.oohclient.model.SpaceDetailsModel
 import com.example.oohclient.rvadapter.AdvertiserSpaceListingRVAdapter
 
-class AdvertiserSpaceListingFragment : Fragment() {
+class AdvertiserSpaceListingFragment : Fragment(), AdvertiserSpaceListingRVAdapter.IrvAdapter {
 
     private lateinit var binding: FragmentAdvertiserSpaceListingBinding
     private lateinit var spaceDetailsModel: SpaceDetailsModel
@@ -24,7 +26,7 @@ class AdvertiserSpaceListingFragment : Fragment() {
         binding = FragmentAdvertiserSpaceListingBinding.inflate(layoutInflater, container, false)
         
 
-        val spaceListingRVAdapter = AdvertiserSpaceListingRVAdapter(context, getSpaceDetailsList())
+        val spaceListingRVAdapter = AdvertiserSpaceListingRVAdapter(context, getSpaceDetailsList(), this)
         binding.rv.adapter = spaceListingRVAdapter
         binding.rv.layoutManager = LinearLayoutManager(context)
 
@@ -125,5 +127,18 @@ class AdvertiserSpaceListingFragment : Fragment() {
                 spaceImg = "https://picsum.photos/200"
             )
         )
+    }
+
+    override fun onLayoutClicked(spaceDetails: SpaceDetailsModel) {
+        val intent = Intent(context, AdvertiserPerticularSpaceActivity::class.java)
+
+        intent.putExtra("spaceId",spaceDetails.spaceId)
+        intent.putExtra("spaceImg",spaceDetails.spaceImg)
+        intent.putExtra("spaceName",spaceDetails.spaceName)
+        intent.putExtra("price",spaceDetails.price)
+        intent.putExtra("dimensions",spaceDetails.dimensions)
+        intent.putExtra("status",spaceDetails.status)
+        intent.putExtra("location",spaceDetails.location)
+        startActivity(intent)
     }
 }
