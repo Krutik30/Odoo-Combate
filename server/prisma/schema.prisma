@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("Admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  adminDetails      AdminDetails?      @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "adminDetails")
+  advertiserDetails AdvertiserDetails? @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "advertiserDetails")
+  spaceOwnerDetails SpaceOwnerDetails? @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "spaceOwnerDetails")
+}
+
+model AdminDetails {
+  user_id Int    @id
+  user    User[]
+}
+
+model AdvertiserDetails {
+  user_id   Int         @id
+  user      User[]
+  advertise Advertise[]
+}
+
+model SpaceOwnerDetails {
+  user_id Int @id
+
+  user   User[]
+  spaces Space[]
+}
+
+model Space {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  address     String
+  location    String
+  ownerId     Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner     SpaceOwnerDetails @relation(fields: [ownerId], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+  advertise Advertise[]
+  performanceMetric PerformanceMetric?
+}
+
+model Advertise {
+  id           Int               @id @default(autoincrement())
+  spaceId      Int
+  advertiserId Int
+  startDate    DateTime
+  endDate      DateTime
+  status       String
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  space        Space             @relation(fields: [spaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  advertiser   AdvertiserDetails @relation(fields: [advertiserId], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model PerformanceMetric {
+  id           Int               @id @default(autoincrement())
+  advertiseId  Int
+  advertiserId Int
+  spaceId      Int               @unique
+  reach        Int
+  engagement   Int
+  converstion  Int
+  dayRange     Int
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  space        Space             @relation(fields: [spaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model booking {
+  id      Int @id @default(autoincrement())
+  spaceId Int
+}
