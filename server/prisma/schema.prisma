@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model user {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   name      String?
@@ -22,98 +22,124 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  adminDetails      AdminDetails?      @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "adminDetails")
-  advertiserDetails AdvertiserDetails? @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "advertiserDetails")
-  spaceOwnerDetails SpaceOwnerDetails? @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "spaceOwnerDetails")
+  adminDetails      adminDetails?      @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "adminDetails")
+  advertiserDetails advertiserDetails? @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "advertiserDetails")
+  spaceOwnerDetails spaceOwnerDetails? @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "spaceOwnerDetails")
 
   @@map("user")
 }
 
-model AdminDetails {
-  user_id Int    @id
-  user    User[]
-  fullName String
+model adminDetails {
+  user_id       Int    @id
+  fullName      String
   contactNumber Int
-  profilePic String
-  @@map("admindetail")
+  profilePic    String
+
+  user user[]
+
+  @@map("admin_detail")
 }
 
-model AdvertiserDetails {
-  user_id   Int         @id
-  user      User[]
-  advertise Advertise[]
-  contactNumber Int
-  department String
+model advertiserDetails {
+  user_id        Int    @id
+  fullName       String
+  contactNumber  Int
+  department     String
   companyAddress String
-  industry String
-  profilePic String
-  ownerDetailId String
-  @@map("advertisedetail")
+  industry       String
+  profilePic     String
+  ownerDetailId  String
+
+  user      user[]
+  advertise advertise[]
+
+  @@map("advertise_detail")
 }
 
-model SpaceOwnerDetails {
-  user_id Int @id
-
-  user   User[]
-  spaces Space[]
-  fullName String
-  contactNumber Int
+model spaceOwnerDetails {
+  user_id        Int    @id
+  fullName       String
+  contactNumber  Int
   companyAddress String
-  industry String
-  profilePic String
-  @@map("spaceownerdetail")
+  profilePic     String
+
+  user   user[]
+  spaces space[]
+
+  @@map("spaceowner_detail")
 }
 
-model Space {
-  id          Int    @id @default(autoincrement())
-  name        String
-  description String
-  address     String
-  location    String
-  ownerId     Int
+model space {
+  id                  Int    @id @default(autoincrement())
+  name                String
+  description         String
+  address             String
+  location            String
+  ownerId             Int
+  status              String
+  price               Int
+  size                Int
+  type                String
+  image               String
+  performanceMetricId Int    @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  owner     SpaceOwnerDetails @relation(fields: [ownerId], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
-  advertise Advertise[]
-  performanceMetric PerformanceMetric?
+  owner             spaceOwnerDetails @relation(fields: [ownerId], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+  advertise         advertise[]
+  performanceMetric performanceMetric @relation(fields: [performanceMetricId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  booking           booking?
+
   @@map("space")
 }
 
-model Advertise {
-  id           Int               @id @default(autoincrement())
+model advertise {
+  id           Int      @id @default(autoincrement())
   spaceId      Int
   advertiserId Int
   startDate    DateTime
   endDate      DateTime
-  status       String
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
-  space        Space             @relation(fields: [spaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  advertiser   AdvertiserDetails @relation(fields: [advertiserId], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  space      space             @relation(fields: [spaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  advertiser advertiserDetails @relation(fields: [advertiserId], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+  booking    booking?
+
   @@map("advertise")
 }
 
-model PerformanceMetric {
-  id           Int               @id @default(autoincrement())
+model performanceMetric {
+  id           Int @id @default(autoincrement())
   advertiseId  Int
   advertiserId Int
-  spaceId      Int               @unique
+  spaceId      Int @unique
   reach        Int
   engagement   Int
   converstion  Int
   dayRange     Int
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
-  space        Space             @relation(fields: [spaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  @@map("performancematric")
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  space space?
+
+  @@map("performance_matric")
 }
 
 model booking {
-  id      Int @id @default(autoincrement())
-  spaceId Int
+  id          Int @id @default(autoincrement())
+  spaceId     Int @unique
+  adveriserId Int @unique
+  price       Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  space      space     @relation(fields: [spaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  advertiser advertise @relation(fields: [adveriserId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
   @@map("booking")
 }
