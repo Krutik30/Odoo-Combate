@@ -54,7 +54,7 @@ model advertiserDetails {
   user      user?     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   advertise advertise[]
 
-  @@map("advertise_detail")
+  @@map("advertiser_detail")
 }
 
 model spaceOwnerDetails {
