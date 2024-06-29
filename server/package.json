@@ -2,7 +2,15 @@
   "name": "ooh-server",
   "version": "1.0.0",
   "author": "AGHERA KRUTIK <agherakrutik99@gmail.com",
-  "type": "module",
+  "license": "UNLICENSED",
+  "main": "index.js",
+  "type": "commonjs",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "target": "es6",
+    "strict": true
+  },
   "scripts": {
     "start": "npx ts-node index.ts",
     "dev": "nodemon index.ts",
@@ -11,9 +19,12 @@
   },
   "dependencies": {
     "@prisma/client": "5.16.1",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "prisma": "^5.16.1"
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^5.16.1",
+    "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
