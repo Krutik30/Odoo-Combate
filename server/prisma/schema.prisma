@@ -25,17 +25,30 @@ model User {
   adminDetails      AdminDetails?      @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "adminDetails")
   advertiserDetails AdvertiserDetails? @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "advertiserDetails")
   spaceOwnerDetails SpaceOwnerDetails? @relation(fields: [id], references: [user_id], onDelete: Cascade, onUpdate: Cascade, map: "spaceOwnerDetails")
+
+  @@map("user")
 }
 
 model AdminDetails {
   user_id Int    @id
   user    User[]
+  fullName String
+  contactNumber Int
+  profilePic String
+  @@map("admindetail")
 }
 
 model AdvertiserDetails {
   user_id   Int         @id
   user      User[]
   advertise Advertise[]
+  contactNumber Int
+  department String
+  companyAddress String
+  industry String
+  profilePic String
+  ownerDetailId String
+  @@map("advertisedetail")
 }
 
 model SpaceOwnerDetails {
@@ -43,6 +56,12 @@ model SpaceOwnerDetails {
 
   user   User[]
   spaces Space[]
+  fullName String
+  contactNumber Int
+  companyAddress String
+  industry String
+  profilePic String
+  @@map("spaceownerdetail")
 }
 
 model Space {
@@ -59,6 +78,7 @@ model Space {
   owner     SpaceOwnerDetails @relation(fields: [ownerId], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
   advertise Advertise[]
   performanceMetric PerformanceMetric?
+  @@map("space")
 }
 
 model Advertise {
@@ -72,6 +92,7 @@ model Advertise {
   updatedAt    DateTime          @updatedAt
   space        Space             @relation(fields: [spaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   advertiser   AdvertiserDetails @relation(fields: [advertiserId], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
+  @@map("advertise")
 }
 
 model PerformanceMetric {
@@ -86,9 +107,13 @@ model PerformanceMetric {
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
   space        Space             @relation(fields: [spaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  @@map("performancematric")
+
+
 }
 
 model booking {
   id      Int @id @default(autoincrement())
   spaceId Int
+  @@map("booking")
 }
