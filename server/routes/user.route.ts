@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { PrismaClient } from '@prisma/client';
 import prisma from '../utils/prismaClient';
 
 const router = Router();
@@ -8,9 +7,10 @@ router.post('/add_detail', async (req, resp) => {
     const { email, role, details } = req.body;
 
     try {
+        console.log('Request received:', { email, role, details });
         //check the role is correct or not
         const user = await prisma.user.findUnique({
-            where: { email },
+            where: { email }
         });
 
         if (!user) {
@@ -22,9 +22,9 @@ router.post('/add_detail', async (req, resp) => {
             return resp.status(400).json({ error: 'Role mismatch' });
         }
        
-
+        let createdDetail;
         if (role === 'Admin') {
-             await prisma.adminDetails.create({
+            createdDetail = await prisma.adminDetails.create({
                 data: {
                     user_id: user.id,
                     ...details
@@ -33,7 +33,7 @@ router.post('/add_detail', async (req, resp) => {
             })
         }
         else if(role === 'Advertiser'){
-             await prisma.advertiserDetails.create({
+            createdDetail = await prisma.advertiserDetails.create({
                 data: {
                     user_id:user.id,
                     ...details
@@ -41,18 +41,21 @@ router.post('/add_detail', async (req, resp) => {
             })
         }
         else if (role==='Owner'){
-             await prisma.spaceOwnerDetails.create({
+             createdDetail =  await prisma.spaceOwnerDetails.create({
                 data: {
                     user_id:user.id,
                     ...details
                 }
             })
         }
-        resp.status(201).json({message:'message created'})
+        resp.status(201).json({ message: 'Detail created successfully', createdDetail })
     }
     catch(error){
         console.log(error);
         resp.status(500).json({error:'Internal server error'})
+    }
+    finally {
+        await prisma.$disconnect();
     }
 
 });

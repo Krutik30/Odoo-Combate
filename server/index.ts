@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
 import authRoutes from './routes/auth.route'; 
+import userRoutes from './routes/user.route'; 
 import bodyParser from 'body-parser';
 dotenv.config();
 
@@ -29,6 +30,8 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.use('/auth', authRoutes);
+app.use('/users', userRoutes);
+
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello World');
