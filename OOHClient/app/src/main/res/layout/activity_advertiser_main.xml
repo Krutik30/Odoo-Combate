@@ -5,6 +5,37 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".advertiseractivities.AdvertiserMainActivity">
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@+id/btmnav"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btmnav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btmnav"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/bottom_nav_background"
+        android:padding="5dp"
+        android:visibility="visible"
+        app:elevation="8dp"
+        app:itemIconTint="#000000"
+        app:itemRippleColor="@color/black"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/advertiser_bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
