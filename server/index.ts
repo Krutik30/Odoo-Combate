@@ -1,11 +1,17 @@
 import express, { Response, Request } from 'express';
 import dotenv from 'dotenv';
+import { PrismaClient } from '@prisma/client';
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/',async (req: Request, res: Response) => {
+    const prisma = new PrismaClient();
+
+    const users = await prisma.user.findMany();
+
+    console.log(users);
     res.send('Hello World');
 })
 
