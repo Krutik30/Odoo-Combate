@@ -12,7 +12,7 @@ router.post('/signup', async (req, res) => {
         // Check if the username already exists
         const existingUser = await prisma.user.findFirst({
             where: {
-                email: ""
+                email
             },
         });
 
