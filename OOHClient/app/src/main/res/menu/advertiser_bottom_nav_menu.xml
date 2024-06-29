@@ -2,17 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/home"
-        android:title="Home"/>
+        android:title="Home"
+        android:icon="@drawable/home"/>
 
-    <item android:id="@+id/availableSpace"
-        android:title="Available Space"/>
+    <item android:id="@+id/searchSpace"
+        android:title="Search Space"
+        android:icon="@drawable/search"/>
 
     <item android:id="@+id/addAds"
-        android:title="Add"/>
+        android:title="Add"
+        android:icon="@drawable/add"/>
 
     <item android:id="@+id/allAds"
-        android:title="All Ads"/>
+        android:title="All Ads"
+        android:icon="@drawable/baseline_circle_24"/>
 
     <item android:id="@+id/userProfile"
-        android:title="user Profile"/>
+        android:title="user Profile"
+        android:icon="@drawable/person"/>
 </menu>

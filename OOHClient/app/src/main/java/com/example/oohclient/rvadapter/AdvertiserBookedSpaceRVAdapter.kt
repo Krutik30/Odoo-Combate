@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.oohclient.databinding.AdvertiserBookedSpaceRvLayBinding
 import com.example.oohclient.model.BookedSpaceDetailsModel
 import com.google.android.material.imageview.ShapeableImageView
@@ -26,6 +27,7 @@ class AdvertiserBookedSpaceRVAdapter(private val context: Context?, private val 
         holder.days.text = bookedSpaceList[position].days
         holder.spaceName.text = bookedSpaceList[position].spaceName
         holder.adName.text = bookedSpaceList[position].adName
+        Glide.with(context!!).load(bookedSpaceList[position].adImg).into(holder.adImg)
     }
 
     class ViewHolder(advertiserBookedSpaceRvLayBinding: AdvertiserBookedSpaceRvLayBinding): RecyclerView.ViewHolder(advertiserBookedSpaceRvLayBinding.root) {
