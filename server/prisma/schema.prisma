@@ -96,15 +96,15 @@ model space {
 
 model advertise {
   id           Int      @id @default(autoincrement())
-  spaceId      Int
-  advertiserId Int
+  spaceId      Int?     @unique
+  advertiserId Int     @unique
   startDate    DateTime
   endDate      DateTime
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  space      space             @relation(fields: [spaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  space      space?             @relation(fields: [spaceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   advertiser advertiserDetails @relation(fields: [advertiserId], references: [user_id], onDelete: Cascade, onUpdate: Cascade)
   booking    booking?
 
